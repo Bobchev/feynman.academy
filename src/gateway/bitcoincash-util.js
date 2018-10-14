@@ -1,0 +1,12 @@
+const gatewayLib = require('feynman-gateway')
+
+class BitcoinCashUtil extends gatewayLib.bitcoincash.Utils {
+  createMultisigAccount(m, accounts) {
+    const ma = this.createMultisigAddress(m, accounts)
+    ma.accountExtrsInfo.redeemScript = ma.accountExtrsInfo.redeemScript.toString('hex')
+    ma.accountExtrsInfo = JSON.stringify(ma.accountExtrsInfo)
+    return ma
+  }
+}
+
+module.exports = BitcoinCashUtil
